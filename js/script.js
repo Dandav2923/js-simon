@@ -16,7 +16,6 @@ function getRndInteger(lenght, min, max) {
     }
     return randomNumbers;
 }
-
 let rNumbers = getRndInteger(5,1,100);
 console.log(rNumbers);
 // stampiamo in pagina i numeri ottenuti
@@ -25,3 +24,29 @@ const container = document.getElementById('container');
 // console.log(container);
 container.append(rNumbers);
 // facciamo sparire i numeri dalla pagina dopo un tot di tempo 
+function displayNone() {
+    container.classList.add('d-none');   
+}
+setTimeout(displayNone, 5000);
+// creare un timer di 30 secondi
+let count = 30;
+let counter = setInterval(() => {
+    console.log(count);
+        count -= 1;
+        if (count <= 0) {
+            clearInterval(counter);
+        }   
+    }, 1000); 
+// Chiediamo all'utente tante volte quanto sono i numeri scritti in pagina
+let userNumber=[];
+for (let index = 0; index < rNumbers.length; index++) {
+    let numbers = parseInt(prompt('inserisci il numero che ricordi'));
+    userNumber.push(numbers);
+}
+console.log(userNumber);
+// confrontiamo i numeri inseriti dall'utente con i numeri che abbiamo generato casualmente
+if (userNumber == rNumbers) {
+    console.log('hai vinto');
+} else {
+    console.log('hai perso');
+}
