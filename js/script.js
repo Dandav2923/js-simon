@@ -7,9 +7,21 @@
 
 // primo step 
 // creare un array di 5 numeri casuali da visualizzare in pagina 
-let randomNumbers = [];
-for (let index = 0; index < 5; index++) {
-    const number = Math.floor(Math.random() * 100) + 1;
-    randomNumbers.push(number);
+// creiamo una funzione per generare numeri casuali  
+function getRndInteger(lenght, min, max) {
+    let randomNumbers = [];
+    for (let index = 0; index < lenght; index++) {
+        const number =Math.floor(Math.random() * (max - min + 1)) + min;
+        randomNumbers.push(number);
+    }
+    return randomNumbers;
 }
-console.log(randomNumbers);
+
+let rNumbers = getRndInteger(5,1,100);
+console.log(rNumbers);
+// stampiamo in pagina i numeri ottenuti
+// selezioniamo l'elemento dove andremo a visualizzare i numeri 
+const container = document.getElementById('container');
+// console.log(container);
+container.append(rNumbers);
+// facciamo sparire i numeri dalla pagina dopo un tot di tempo 
