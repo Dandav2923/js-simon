@@ -24,29 +24,41 @@ const container = document.getElementById('container');
 // console.log(container);
 container.append(rNumbers);
 // facciamo sparire i numeri dalla pagina dopo un tot di tempo 
-function displayNone() {
-    container.classList.add('d-none');   
-}
-setTimeout(displayNone, 5000);
+let counter = 0;
+let interval = setInterval(function () {
+    counter++;
+    console.log(counter);
+    if (counter == 5) {
+        container.classList.add('d-none');
+        clearInterval(interval);
+    }
+}, 1000);
 // creare un timer di 30 secondi
-let count = 30;
-let counter = setInterval(() => {
-    console.log(count);
-        count -= 1;
-        if (count <= 0) {
-            clearInterval(counter);
-        }   
-    }, 1000); 
+let interval2 = setInterval(function(){
+    counter++;
+    console.log(counter);
+if (counter == 30){
+    clearInterval(interval2);
+}
+}, 1000);
 // Chiediamo all'utente tante volte quanto sono i numeri scritti in pagina
-let userNumber=[];
-for (let index = 0; index < rNumbers.length; index++) {
-    let numbers = parseInt(prompt('inserisci il numero che ricordi'));
-    userNumber.push(numbers);
-}
-console.log(userNumber);
+let interval3 = setInterval(function(){
+    counter++
+    console.log(counter);
+    let userNumber=[];
+    for (let index = 0; index < rNumbers.length; index++) {
+        let numbers = parseInt(prompt('inserisci il numero che ricordi'));
+        userNumber.push(numbers);
+    }
+    console.log(userNumber);
+    if (counter == 60) {
+        clearInterval(interval2);
+    }
+
+},1000);
 // confrontiamo i numeri inseriti dall'utente con i numeri che abbiamo generato casualmente
-if (userNumber == rNumbers) {
-    console.log('hai vinto');
-} else {
-    console.log('hai perso');
-}
+// if (userNumber == rNumbers) {
+//     console.log('hai vinto');
+// } else {
+//     console.log('hai perso');
+// }
