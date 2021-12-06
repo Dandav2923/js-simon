@@ -25,40 +25,38 @@ const container = document.getElementById('container');
 container.append(rNumbers);
 // facciamo sparire i numeri dalla pagina dopo un tot di tempo 
 let counter = 0;
-let interval = setInterval(function () {
-    counter++;
-    console.log(counter);
-    if (counter == 5) {
-        container.classList.add('d-none');
-        clearInterval(interval);
-    }
-}, 1000);
-// creare un timer di 30 secondi
-let interval2 = setInterval(function(){
-    counter++;
-    console.log(counter);
-if (counter == 30){
-    clearInterval(interval2);
-}
-}, 1000);
-// Chiediamo all'utente tante volte quanto sono i numeri scritti in pagina
-let interval3 = setInterval(function(){
-    counter++
-    console.log(counter);
-    let userNumber=[];
-    for (let index = 0; index < rNumbers.length; index++) {
-        let numbers = parseInt(prompt('inserisci il numero che ricordi'));
-        userNumber.push(numbers);
-    }
-    console.log(userNumber);
-    if (counter == 60) {
-        clearInterval(interval2);
-    }
+let timeOut1 = setTimeout(function () {
+    container.classList.add('d-none');
+    let interval1 = setInterval(() => {
+        // creare un timer di 30 secondi
+        if (counter < 30) {
+            counter++;
+            console.log(counter);
+        } else {
+                clearInterval(interval1);
+                let userNumber=[];
+                let quantityNumbers = 0;
+                let numbersRight = [];
+                // Chiediamo all'utente tante volte quanto sono i numeri scritti in pagina
+                for (let index = 0; index < rNumbers.length; index++) {
+                    let numbers = parseInt(prompt('inserisci il numero che ricordi'));
+                    userNumber.push(numbers);
+                    console.log(userNumber);
+                    // confrontiamo i numeri inseriti dall'utente con i numeri che abbiamo generato casualmente
+                    if (rNumbers.includes(userNumber[index])) {
+                        quantityNumbers++;
+                        numbersRight.push(userNumber[index]);
+                        // console.log(numbersRight);
+                        // console.log(quantityNumbers);
+                    }
+                }
+                // mostriamo il risultato in pagina 
+                let risultato = document.getElementById('risultato');
+                risultato.append(`Hai indovinato ${quantityNumbers} numeri e sono questi ${numbersRight}`);
+            }
+        }, 1000);
+}, 5000);
 
-},1000);
-// confrontiamo i numeri inseriti dall'utente con i numeri che abbiamo generato casualmente
-// if (userNumber == rNumbers) {
-//     console.log('hai vinto');
-// } else {
-//     console.log('hai perso');
-// }
+
+
+
